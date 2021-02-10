@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Expenses Tracker</title>
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h2 class="title">Expenses Tracker</h2>
+
+    <!-- Total balance -->
+    <h2 class="balance-title">BALANCE</h2>
+    <h1 class="balance"><%= savedTrans.reduce((val, tran) => val += parseFloat(tran.money), 0).toFixed(2) %>€</h1>
+
+    <!-- Income/Outcome balance -->
+    <div class="money">
+      <div class="income">
+        <h4>INCOME</h4>
+        <p class="money-income">+<%= savedTrans.filter(tran => tran.money > 0).reduce((val, tran) => val += parseFloat(tran.money), 0).toFixed(2) %>€</p>
+      </div>
+      <div class="outcome">
+        <h4>EXPENSES</h4>
+        <p class="money-outcome"><%= savedTrans.filter(tran => tran.money < 0).reduce((val, tran) => val += parseFloat(tran.money), 0).toFixed(2) %>€</p>
+      </div>
+    </div>
+
+    <!-- First transactions -->
+    <div class="transactions">
+      <h2>Last Transactions</h2>
+      <hr><br>
+
+      <% for(let [index, tran] of savedTrans.entries()) {
+        if(tran.money < 0) {%>
+          <form class="" action="/delete1" method="post">
+            <div class="t-income red">
+              <span><%= tran.concept %></span>
+              <span><%= tran.money %>€</span>
+              <button type="submit" title="Delete transaction" class="delete-btn" name="delete1" value="<%= tran._id %>">X</button>
+            </div>
+          </form>
+      <% } else { %>
+          <form class="" action="/delete1" method="post">
+            <div class="t-income green">
+              <span><%= tran.concept %></span>
+              <span><%= tran.money %>€</span>
+              <button type="submit" title="Delete transaction" class="delete-btn" name="delete1" value="<%= tran._id %>">X</button>
+            </div>
+          </form>
+      <% } %>
+      <% if(index === 4) {break;} %>
+      <% } %>
+
+      <a href="/history">See all transactions</a>
+    </div>
+
+    <!-- Add transactions -->
+    <h2 class="transactions-title">New Transaction</h2>
+    <hr>
+    <form class="" action="/" method="post">
+      <p class="concept-text">Concept</p>
+      <input type="text" name="concept" value="" class="concept" placeholder="Enter concept">
+      <p class="small hide" id="small-concept">Enter a concept</p>
+      <p class="amount-text">Amount</p>
+      <input type="number" name="amount" value="" class="amount" placeholder="Enter amount">
+      <p class="small hide" id="small-amount">Enter an amount</p>
+      <button type="submit" name="button" class="add-btn" onclick="">Add Transaction</button>
+    </form>
+
+  </div>
+
+  <script src="js/script.js" charset="utf-8"></script>
+
+
+  <%- include("partials/footer") %>

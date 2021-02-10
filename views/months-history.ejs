@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Expenses Tracker</title>
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="css/styles-months.css">
+  <script src="js/datepicker.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/datepicker.css">
+</head>
+
+<body>
+
+  <div class="main">
+
+    <h2 class="title"><a href="/">Expenses Tracker</a></h2>
+
+    <!-- Search transactions -->
+    <form class="" action="/history" method="post">
+      <div class="datepicker">
+        <p><input type="text" id="datepicker" name="datepicker" placeholder="Pick a date" value=""></p>
+        <button type="submit" name="button" id="submit" class="submit">Search</button>
+      </div>
+    </form>
+
+    <!-- Total balance -->
+    <h3 class="balance-title">BALANCE</h3>
+    <h2 class="balance"><%= monthTrans.reduce((val, tran) => val += parseFloat(tran.money), 0).toFixed(2) %>€</h2>
+
+    <!-- Income/Outcome balance -->
+    <div class="money">
+      <div class="income">
+        <h4>INCOME</h4>
+        <p class="money-income">+<%= monthTrans.filter(tran => tran.money > 0).reduce((val, tran) => val += parseFloat(tran.money), 0).toFixed(2) %>€</p>
+      </div>
+      <div class="outcome">
+        <h4>EXPENSES</h4>
+        <p class="money-outcome"><%= monthTrans.filter(tran => tran.money < 0).reduce((val, tran) => val += parseFloat(tran.money), 0).toFixed(2) %>€</p>
+      </div>
+    </div>
+
+    <!-- Transactions -->
+    <div class="transactions">
+      <h2>Transactions</h2>
+      <hr><br>
+
+      <div class="scroll" id="scroll">
+        <% for(let [index, tran] of monthTrans.entries()) {
+          if(tran.money < 0) {%>
+            <form class="" action="/delete2" method="post">
+              <div class="t-income red">
+                <span><%= tran.concept %></span>
+                <span><%= tran.money %>€</span>
+                <button type="submit" title="Delete transaction" class="delete-btn" name="delete2" value="<%= tran._id %>">X</button>
+              </div>
+            </form>
+        <% } else { %>
+            <form class="" action="/delete2" method="post">
+              <div class="t-income green">
+                <span><%= tran.concept %></span>
+                <span><%= tran.money %>€</span>
+                <button type="submit" title="Delete transaction" class="delete-btn" name="delete2" value="<%= tran._id %>">X</button>
+              </div>
+            </form>
+        <% } %>
+        <% } %>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="js/script.js" charset="utf-8"></script>
+
+
+  <%- include("partials/footer") %>

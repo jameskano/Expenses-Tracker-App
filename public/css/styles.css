@@ -1,0 +1,240 @@
+body {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; */
+  font-family: calibri;
+  background-color: #FFF9FF;
+  margin: 0;
+}
+
+.container {
+  padding: 50px;
+  /* box-shadow: 0 5px 10px #989898; */
+  border-radius: 5px;
+  height: 922.625px;
+  width: 370.219px;
+  margin: 100px auto;
+}
+
+.title {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.balance {
+  margin-top: 0;
+}
+
+.balance-title {
+  margin-bottom: 0;
+}
+
+.money {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 1px;
+  box-shadow: 0 1px 4px #989898;
+  padding: 20px 0;
+}
+
+.money h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.income {
+  padding: 0 50px;
+  border-right: 1px solid #CBCBCB;
+}
+
+.money-income {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  color: #08FF00;
+  margin-bottom: 0;
+}
+
+.outcome {
+  padding: 0 50px;
+}
+
+.money-outcome {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  color: #FF1616;
+  margin-bottom: 0;
+}
+
+.transactions h2 {
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.t-income {
+  box-shadow: 0 0 4px #828F9E;
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.t-income span {
+  font-size: 1.2rem;
+  padding: 10px 10px;
+  color: #4E4E4E;
+}
+
+.t-income.green {
+  border-left: 5px solid #08FF00;
+}
+
+.t-income.red {
+  border-left: 5px solid #FF1616;
+}
+
+.delete-btn {
+  position: absolute;
+  right: -35px;
+  top: 6.5px;
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FF1616;
+  color: white;
+  box-shadow: 0 0 3px #989898;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #D51414;
+}
+
+.t-income:hover .delete-btn {
+  opacity: 1;
+}
+
+a {
+  color: #0074FF;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+
+.transactions-title {
+  margin-bottom: 5px;
+  margin-top: 30px;
+}
+
+input {
+  width: 96%;
+  height: 35px;
+  font-size: 1rem;
+  border: 1px solid #CBCBCB;
+  border-radius: 2px;
+  padding-left: 10px;
+  display: block;
+  outline: 0;
+}
+
+.concept-text {
+  margin-bottom: 8px;
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.amount-text {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.add-btn {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  padding: 10px 0;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  background-color: #0074FF;
+  color: white;
+  box-shadow: 0 1px 4px #828F9E;
+  border-radius: 2px;
+}
+
+.add-btn:focus {
+  outline: 0;
+}
+
+.delete-btn:focus {
+  outline: 0;
+}
+
+.add-btn:hover {
+  background-color: #005CC9;
+}
+
+.add-btn:active {
+  transform: scale(0.99);
+}
+
+.small {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: #FF1616;
+}
+
+.hide {
+  display: none;
+}
+
+.cr {
+  font-size: 0.8rem;
+  bottom: 10px;
+  text-align: center;
+}
+
+
+@media (max-height: 1080px) {
+  .container {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 20px auto 50px;
+    width: 90%;
+    padding: 50px 10px;
+  }
+
+  .t-income {
+    margin-right: 20px;
+  }
+
+  .income, .outcome {
+    padding: 0 40px;
+  }
+}
+
+@media (max-height: 600px) {
+  .container {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 330px) {
+  .income, .outcome {
+    padding: 0 10px;
+  }
+}
